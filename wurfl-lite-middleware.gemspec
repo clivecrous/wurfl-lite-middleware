@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{A Rack middleware implementation of wurfl-lite}
   s.description = %q{A Rack middleware implementation of wurfl-lite}
 
-  s.add_dependency "wurfl-lite", ">= 1.0.1"
+  s.add_dependency "wurfl-lite", ">= 1.0.2"
   s.add_dependency "rack", ">= 1.2.1"
 
   s.add_development_dependency "bundler", ">= 1.0.0"
