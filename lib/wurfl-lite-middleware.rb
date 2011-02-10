@@ -5,7 +5,7 @@ class WURFL
   class Middleware
     def initialize( app )
       @app = app
-      @wurfl = ENV.has_key?( 'WURFL_XML' ) ? WURFL.new( ENV[ 'WURFL_XML' ] ) : WURFL.new
+      @wurfl = ENV.has_key?( 'WURFL_XML' ) ? WURFL.new( ENV[ 'WURFL_XML' ].split(',') ) : WURFL.new
     end
     def call( env )
       env['WURFL'] = @wurfl[ env[ 'HTTP_USER_AGENT' ] ]
