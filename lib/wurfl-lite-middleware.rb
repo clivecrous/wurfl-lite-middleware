@@ -3,9 +3,15 @@ require 'wurfl-lite'
 
 class WURFL
   class Middleware
-    def initialize( app )
+    def initialize( app, options = {} )
       @app = app
-      @wurfl = ENV.has_key?( 'WURFL_XML' ) ? WURFL.new( ENV[ 'WURFL_XML' ].split(',') ) : WURFL.new
+
+      # Try to get the location from either parameters or environment
+      location = options.delete(:wurfl_xml) || ENV['WURFL_XML']
+      @wurfl = location.nil? ? WURFL.new : WURFL.new( location )
+
+      # Configure the object
+      @wurfl.match_threshold = options[:match_threshold] if options[:match_threshold] 
     end
     def call( env )
       env['WURFL'] = @wurfl[ env[ 'HTTP_USER_AGENT' ] ]
